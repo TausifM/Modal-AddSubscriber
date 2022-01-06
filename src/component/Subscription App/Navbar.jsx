@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 const Navbar = () => {
   return (
     <>
@@ -37,7 +36,5 @@ const Navbar = () => {
     </>
   );
 };
-
-Navbar.propTypes = { title: PropTypes.string.isRequired };
 
 export default Navbar;
