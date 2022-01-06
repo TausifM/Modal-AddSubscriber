@@ -10,7 +10,7 @@ const ErrorModel = (props) => {
           <p> {props.content}</p>
         </div>
         <footer className="actions">
-          <button>Okay</button>
+          <button onClick={props.onClose}>Okay</button>
         </footer>
       </div>
     </div>

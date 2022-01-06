@@ -35,7 +35,11 @@ const AddSubscriber = (props) => {
   return (
     <div>
       {error && (
-        <ErrorModel title={error.title} content={error.content}></ErrorModel>
+        <ErrorModel
+          title={error.title}
+          content={error.content}
+          onClose={!error}
+        ></ErrorModel>
       )}
       <form onSubmit={onSubmitHandler}>
         <Container className="input">
