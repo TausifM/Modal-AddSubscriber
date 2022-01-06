@@ -15,6 +15,8 @@ const AddSubscriber = (props) => {
   };
   const onSubmitHandler = (events) => {
     events.preventDefault();
+    // Validator()
+
     if (name.trim().length === 0) {
       setError({ title: "Invalid Name", content: "Name is mandatory" });
       return;
@@ -30,7 +32,9 @@ const AddSubscriber = (props) => {
     setPincode("");
     props.onAddSubscriber(name, pincode);
   };
-  // Validator()
+  const onCloseHandler = () => {
+    setError(null);
+  };
 
   return (
     <div>
@@ -38,7 +42,7 @@ const AddSubscriber = (props) => {
         <ErrorModel
           title={error.title}
           content={error.content}
-          onClose={!error}
+          onClose={onCloseHandler} // or !error
         ></ErrorModel>
       )}
       <form onSubmit={onSubmitHandler}>

@@ -1,7 +1,7 @@
 import "./ErrorModel.css";
 const ErrorModel = (props) => {
   return (
-    <div className="backdrop">
+    <div className="backdrop" onClick={props.onClose}>
       <div className="modal">
         <header>
           <h2>{props.title}</h2>
