@@ -5,6 +5,7 @@ import Container from "./component/Subscription App/Container";
 import SubscriptionList from "./component/Subscription App/Subscription/SubscriptionList";
 import SubscriptionChart from "./component/Subscription App/Subscription/SubscriptionChart";
 import Navbar from "./component/Subscription App/Navbar";
+import SubscriptionContext from "./component/Subscription App/context store/subscription-context";
 const INTIAL_SUBSCRIPTIONS = [
   {
     id: "1",
@@ -75,8 +76,16 @@ function App() {
       <Navbar />
       <NewSubscription onAddSubscription={addSubscriptionHandler} />
       <Filter onFilterChange={filterChangeHandler} selectValue={filteredYear} />
-      <SubscriptionList subscriptions={filterSubscriptions} />
-      <SubscriptionChart filteredSubscriptions={filterSubscriptions} />
+      {/* data Passing by using Context Dt: 8/1/22*/}
+      <SubscriptionContext.Provider value={{ subscriptionsList: [] }}>
+        {/* If you want to pass function in Context Provider you can us 
+        dummy & pass that function handler eg- dummy: filterChangeHandler */}
+        {/* Context is used when forarding data and creating chain just like
+        form subscription and new subscrition */}
+        <SubscriptionList subscriptions={filterSubscriptions} />
+        <SubscriptionChart filteredSubscriptions={filterSubscriptions} />
+      </SubscriptionContext.Provider>
+
       {/* {content} */}
       {/* {filterSubscriptions.length === 0 && <h3>No Data Found </h3>}
       {filterSubscriptions.length !== 0 &&

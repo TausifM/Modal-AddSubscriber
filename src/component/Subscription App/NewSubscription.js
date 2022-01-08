@@ -21,7 +21,11 @@ const NewSubscription = (props) => {
       {showForm && (
         <FormSubscription onSave={onSaveData} onCancel={hideFormHandler} />
       )}
-      <button type="button" onClick={showFormHandler}>
+      <button
+        type="button"
+        className="btn-primary py-2 my-1"
+        onClick={showFormHandler}
+      >
         Add new
       </button>
     </div>
