@@ -131,3 +131,9 @@ const FormSubscription = (props) => {
   );
 };
 export default FormSubscription;
+// RULES OF USING HOOKS
+// 1. Hooks can only be used in the function component
+// 2. YOU CANNOT USE HOOKS IN NESTED FUNCTION
+// 3 FOR USEEFFECT  you should alwways add the things you use in function as a
+// dependancy state update functions are exceptions a sthey will never change.
+// we only specify changing value by user in useEffect
