@@ -33,7 +33,9 @@ const ErrorModel = (props) => {
           <p> {props.content}</p>
         </div>
         <footer className="actions">
-          <button onClick={props.onClose}>Okay</button>
+          <button className="btn-success py-2 " onClick={props.onClose}>
+            Okay
+          </button>
         </footer>
       </div>
     </div>

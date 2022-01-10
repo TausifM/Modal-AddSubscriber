@@ -1,12 +1,13 @@
 import Container from "./Container";
 import "./AddSubscriber.css";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ErrorModel from "./ErrorModel";
+import Input from "./template/Input";
 const AddSubscriber = (props) => {
   const [name, setName] = useState("");
   const [pincode, setPincode] = useState("");
-  const [error, setError] = useState("");
-
+  const [error, setError] = useState();
+  const nameInputRef = useRef("");
   const onNameChange = (events) => {
     setName(events.target.value);
   };
@@ -16,8 +17,7 @@ const AddSubscriber = (props) => {
   const onSubmitHandler = (events) => {
     events.preventDefault();
     // Validator()
-
-    if (name.trim().length === 0) {
+    if (nameInputRef.current.value.trim().length === 0) {
       setError({ title: "Invalid Name", content: "Name is mandatory" });
       return;
     }
@@ -25,7 +25,7 @@ const AddSubscriber = (props) => {
       setError({ title: "Invalid Pincode", content: "Pincode is mandatory" });
     }
     if (pincode.length < 5 || pincode < 0) {
-      setError({ title: "invalid Pincode", content: "Posiive pincode" });
+      setError({ title: "invalid Pincode", content: "Positive pincode" });
       return;
     }
     setName("");
@@ -42,18 +42,25 @@ const AddSubscriber = (props) => {
         <ErrorModel
           title={error.title}
           content={error.content}
-          onClose={onCloseHandler} // or !error
+          onClose={onCloseHandler} // or !error , but prevState => !prevState much better
         ></ErrorModel>
       )}
       <form onSubmit={onSubmitHandler}>
         <Container className="input">
-          <label htmlFor="name">Name</label>
+          {/* <label htmlFor="name">Name</label>
           <input
             id="name"
             value={name}
             onChange={onNameChange}
             type="text"
-          ></input>
+          ></input> */}
+          <Input
+            id="name"
+            type="text"
+            ref={nameInputRef}
+            onChange={onNameChange}
+            label="Name"
+          />
           <label htmlFor="pincode">Pincode</label>
           <input
             id="pincode"
@@ -71,3 +78,5 @@ const AddSubscriber = (props) => {
 };
 
 export default AddSubscriber;
+
+// we cannot pass Ref directly as a props.
